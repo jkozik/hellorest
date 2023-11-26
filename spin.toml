@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "hellorest"
+version = "0.1.0"
+authors = ["Jack Kozik <jackkozik@email.com>"]
+description = ""
+
+[[trigger.http]]
+route = "/rust"
+component = "hellorest"
+
+[component.hellorest]
+source = "dockercon.wasm"
+allowed_outbound_hosts = []
+[component.hellorest.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
